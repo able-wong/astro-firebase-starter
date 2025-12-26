@@ -10,7 +10,7 @@ const { title, description = 'A modern static site built with Astro' } = Astro.p
 ---
 
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,14 +18,23 @@ const { title, description = 'A modern static site built with Astro' } = Astro.p
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <script is:inline>
+      // Apply theme immediately to prevent flash
+      (function() {
+        const storedPreference = localStorage.getItem('theme-preference') || 'system';
+        let theme;
+
+        if (storedPreference === 'system') {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        } else {
+          theme = storedPreference;
+        }
+
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
   </head>
   <body class="min-h-screen bg-base-100">
     <slot />
   </body>
 </html>
-
-<script>
-  // Theme persistence
-  const theme = localStorage.getItem('theme') || 'light';
-  document.documentElement.setAttribute('data-theme', theme);
-</script>
