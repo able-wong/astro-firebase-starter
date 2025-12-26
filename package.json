@@ -1,0 +1,32 @@
+{
+  "name": "astro-static-starter",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "deploy": "npm run build && firebase deploy --only hosting",
+    "test-firebase": "node scripts/test-firebase-config.js",
+    "fetch-firebase": "node scripts/firebase-data-fetcher.js",
+    "import-firestore": "node scripts/import-firestore-data.js"
+  },
+  "dependencies": {
+    "@astrojs/react": "^4.4.2",
+    "@tailwindcss/vite": "^4.1.18",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "astro": "^5.16.6",
+    "daisyui": "^5.5.14",
+    "firebase": "^12.7.0",
+    "flowbite-react": "^0.12.14",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "tailwindcss": "^4.1.18"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5",
+    "firebase-admin": "^13.0.2"
+  }
+}

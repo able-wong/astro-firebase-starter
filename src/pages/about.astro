@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="About | Company Name" description="Learn more about our company and mission">
+  <Header currentPath="/about" />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero min-h-[40vh] bg-base-200">
+      <div class="hero-content text-center">
+        <div class="max-w-2xl">
+          <h1 class="text-5xl font-bold">About Us</h1>
+          <p class="py-6 text-lg">
+            Discover our story, mission, and the team behind our success.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="py-20 px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold mb-8">Our Story</h2>
+        <div class="prose prose-lg max-w-none">
+          <p>
+            Founded with a vision to transform the industry, Company Name has grown from a small startup
+            to a trusted partner for businesses worldwide. Our journey began with a simple idea:
+            to provide exceptional solutions that make a real difference.
+          </p>
+          <p>
+            Over the years, we've helped countless clients achieve their goals through innovation,
+            dedication, and a commitment to excellence. Our team of experts brings together
+            diverse skills and perspectives to deliver results that exceed expectations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="py-16 bg-base-200 px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12">Our Values</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="card bg-base-100">
+            <div class="card-body">
+              <h3 class="card-title">Integrity</h3>
+              <p>We believe in honest, transparent relationships with our clients and partners.</p>
+            </div>
+          </div>
+          <div class="card bg-base-100">
+            <div class="card-body">
+              <h3 class="card-title">Innovation</h3>
+              <p>We continuously push boundaries to find better solutions.</p>
+            </div>
+          </div>
+          <div class="card bg-base-100">
+            <div class="card-body">
+              <h3 class="card-title">Excellence</h3>
+              <p>We strive for the highest quality in everything we do.</p>
+            </div>
+          </div>
+          <div class="card bg-base-100">
+            <div class="card-body">
+              <h3 class="card-title">Collaboration</h3>
+              <p>We work together with our clients to achieve shared success.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-20 px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12">Our Team</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="card bg-base-100 shadow-xl">
+            <figure class="px-10 pt-10">
+              <div class="avatar placeholder">
+                <div class="bg-neutral text-neutral-content w-24 rounded-full">
+                  <span class="text-3xl">JD</span>
+                </div>
+              </div>
+            </figure>
+            <div class="card-body items-center text-center">
+              <h3 class="card-title">Jane Doe</h3>
+              <p class="text-sm text-base-content/70">CEO & Founder</p>
+              <p>Leading our vision and strategy with over 15 years of industry experience.</p>
+            </div>
+          </div>
+          <div class="card bg-base-100 shadow-xl">
+            <figure class="px-10 pt-10">
+              <div class="avatar placeholder">
+                <div class="bg-neutral text-neutral-content w-24 rounded-full">
+                  <span class="text-3xl">JS</span>
+                </div>
+              </div>
+            </figure>
+            <div class="card-body items-center text-center">
+              <h3 class="card-title">John Smith</h3>
+              <p class="text-sm text-base-content/70">CTO</p>
+              <p>Driving technical innovation and building scalable solutions.</p>
+            </div>
+          </div>
+          <div class="card bg-base-100 shadow-xl">
+            <figure class="px-10 pt-10">
+              <div class="avatar placeholder">
+                <div class="bg-neutral text-neutral-content w-24 rounded-full">
+                  <span class="text-3xl">SJ</span>
+                </div>
+              </div>
+            </figure>
+            <div class="card-body items-center text-center">
+              <h3 class="card-title">Sarah Johnson</h3>
+              <p class="text-sm text-base-content/70">Head of Operations</p>
+              <p>Ensuring smooth operations and exceptional client experiences.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
