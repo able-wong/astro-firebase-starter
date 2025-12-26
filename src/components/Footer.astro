@@ -1,13 +1,69 @@
 ---
+import { TwitterIcon, GitHubIcon, LinkedInIcon } from './icons';
+
 const currentYear = new Date().getFullYear();
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const socialLinks = [
+  { href: 'https://twitter.com', label: 'Twitter', icon: TwitterIcon },
+  { href: 'https://github.com', label: 'GitHub', icon: GitHubIcon },
+  { href: 'https://linkedin.com', label: 'LinkedIn', icon: LinkedInIcon },
+];
 ---
 
-<footer class="footer footer-center bg-base-200 text-base-content p-10">
-  <nav class="grid grid-flow-col gap-4">
-    <a href="/about" class="link link-hover">About us</a>
-    <a href="/contact" class="link link-hover">Contact</a>
-  </nav>
-  <aside>
-    <p>Copyright &copy; {currentYear} - Company Name. All rights reserved.</p>
-  </aside>
+<footer class="bg-base-200 text-base-content">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 py-10 lg:px-8 max-w-7xl mx-auto">
+    <!-- Company Info -->
+    <div>
+      <span class="text-xl font-bold">Company Name</span>
+      <p class="mt-2 text-base-content/70">Building great products with modern web technologies.</p>
+    </div>
+
+    <!-- Navigation -->
+    <div>
+      <h6 class="font-semibold mb-3">Navigation</h6>
+      <nav class="grid grid-cols-2 gap-2">
+        {
+          navLinks.map((link) => (
+            <a href={link.href} class="link link-hover">
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+
+    <!-- Social -->
+    <div>
+      <h6 class="font-semibold mb-3">Connect</h6>
+      <div class="flex gap-4">
+        {
+          socialLinks.map(({ href, label, icon: Icon }) => (
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={label}
+              class="hover:text-primary transition-colors"
+            >
+              <Icon className="h-6 w-6" />
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright Bar -->
+  <div class="border-t border-base-300">
+    <div class="px-4 py-4 lg:px-8 max-w-7xl mx-auto text-center text-sm text-base-content/60">
+      <p>Copyright &copy; {currentYear} Company Name. All rights reserved.</p>
+    </div>
+  </div>
 </footer>

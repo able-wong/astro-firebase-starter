@@ -16,10 +16,30 @@ const navLinks = [
 ];
 ---
 
-<header class="navbar bg-base-100 shadow-sm">
+<header class="navbar bg-base-100 shadow-sm px-4 lg:px-8">
+  <!-- Logo -->
   <div class="navbar-start">
-    <div class="dropdown">
-      <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+    <a href="/" class="btn btn-ghost text-xl">Company Name</a>
+  </div>
+
+  <!-- Desktop Navigation + Theme -->
+  <div class="navbar-end">
+    <ul class="menu menu-horizontal px-1 hidden lg:flex">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a href={link.href} class={currentPath === link.href ? 'active' : ''}>
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <ThemeSelector client:load />
+
+    <!-- Mobile Menu Button -->
+    <div class="dropdown dropdown-end lg:hidden">
+      <div tabindex="0" role="button" class="btn btn-ghost">
         <MenuIcon className="h-5 w-5" />
       </div>
       <ul
@@ -37,22 +57,5 @@ const navLinks = [
         }
       </ul>
     </div>
-    <a href="/" class="btn btn-ghost text-xl">Company Name</a>
-  </div>
-  <div class="navbar-center hidden lg:flex">
-    <ul class="menu menu-horizontal px-1">
-      {
-        navLinks.map((link) => (
-          <li>
-            <a href={link.href} class={currentPath === link.href ? 'active' : ''}>
-              {link.label}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
-  <div class="navbar-end">
-    <ThemeSelector client:load />
   </div>
 </header>
