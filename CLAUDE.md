@@ -60,8 +60,17 @@ To add new icons:
 
 - `npm run dev` - Development server
 - `npm run build` - Build static site
+- `npm run validate` - Run all checks (typecheck + lint + format + test)
 - `npm run deploy` - Build and deploy to Firebase Hosting
-- `npm run test-firebase` - Test Firebase configuration
+
+### Code Quality
+
+- **Typecheck**: `npm run typecheck` (Astro check)
+- **Lint**: `npm run lint` / `npm run lint:fix` (ESLint)
+- **Format**: `npm run format` (Prettier)
+- **Test**: `npm run test` / `npm run test:watch` (Vitest)
+
+Run `npm run validate` before committing. Tests go in `*.test.tsx` files alongside components.
 
 ## Development Guidelines
 

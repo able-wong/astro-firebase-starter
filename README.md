@@ -66,11 +66,32 @@ cp .env.example .env
 
 ## Commands
 
+### Development
+
 | Command | Action |
 | :------ | :----- |
 | `npm run dev` | Start development server at `localhost:4321` |
 | `npm run build` | Build production site to `./dist/` |
 | `npm run preview` | Preview build locally |
+
+### Code Quality
+
+| Command | Action |
+| :------ | :----- |
+| `npm run validate` | Run all checks (typecheck + lint + format + test) |
+| `npm run typecheck` | TypeScript type checking |
+| `npm run lint` | ESLint code quality check |
+| `npm run lint:fix` | ESLint with auto-fix |
+| `npm run format` | Prettier format all files |
+| `npm run format:check` | Check formatting without writing |
+| `npm run test` | Run unit tests (Vitest) |
+| `npm run test:watch` | Run tests in watch mode |
+| `npm run test:coverage` | Run tests with coverage report |
+
+### Deployment & Firebase
+
+| Command | Action |
+| :------ | :----- |
 | `npm run deploy` | Build and deploy to Firebase Hosting |
 | `npm run test-firebase` | Test Firebase configuration |
 | `npm run fetch-firebase <collection>` | Fetch Firestore data |
@@ -178,6 +199,30 @@ import { SunIcon, CheckIcon, MapPinIcon } from './components/icons';
 ```
 
 Available icons: `MenuIcon`, `SunIcon`, `MoonIcon`, `MonitorIcon`, `CheckIcon`, `MapPinIcon`, `MailIcon`, `PhoneIcon`
+
+## Testing
+
+Tests use [Vitest](https://vitest.dev/) with [Testing Library](https://testing-library.com/).
+
+```bash
+# Run tests once
+npm run test
+
+# Watch mode for development
+npm run test:watch
+
+# With coverage report
+npm run test:coverage
+```
+
+Test files are placed alongside components with `.test.tsx` extension:
+
+```
+src/components/
+├── icons.tsx
+├── icons.test.tsx    # Tests for icons
+└── ...
+```
 
 ## Learn More
 
