@@ -31,9 +31,30 @@ Key implications:
 - `src/layouts/*.astro` - Page layouts
 - `src/components/*.astro` - Astro components
 - `src/components/*.tsx` - React components (for interactivity)
+- `src/components/icons.tsx` - Centralized icon components
 - `src/lib/*.ts` - Utility libraries
 - `src/styles/global.css` - Global styles and DaisyUI config
 - `scripts/*.js` - Node.js utility scripts
+
+### Icons
+
+All icons are centralized in `src/components/icons.tsx`. Never use inline SVGs.
+
+```typescript
+// Import icons
+import { SunIcon, MoonIcon, CheckIcon } from '../components/icons';
+
+// Use with className for sizing
+<SunIcon className="h-5 w-5" />
+<CheckIcon className="h-4 w-4 text-primary" />
+```
+
+Available icons: `MenuIcon`, `SunIcon`, `MoonIcon`, `MonitorIcon`, `CheckIcon`, `MapPinIcon`, `MailIcon`, `PhoneIcon`
+
+To add new icons:
+1. Add the icon function to `src/components/icons.tsx`
+2. Export it from the file
+3. Use consistent pattern: `({ className = 'h-5 w-5' }: IconProps)`
 
 ### Commands
 
@@ -89,7 +110,8 @@ Environment variable: `PUBLIC_FIREBASE_CONFIG` (prefix with `PUBLIC_` for client
 
 - Use DaisyUI semantic classes: `btn`, `card`, `navbar`, `hero`, etc.
 - Use DaisyUI color classes: `bg-base-100`, `text-primary`, etc.
-- Theme toggle is built-in (light/dark)
+- Theme selector has Light/Dark/System options (System is default)
+- Theme preference stored in `localStorage` as `theme-preference`
 
 ### Pre-Deployment Checklist
 

@@ -18,6 +18,8 @@ A modern static site starter built with Astro, React, TailwindCSS, and DaisyUI. 
 ├── public/              # Static assets (images, favicon, etc.)
 ├── src/
 │   ├── components/      # Astro and React components
+│   │   ├── icons.tsx    # Centralized icon components
+│   │   └── *.astro      # Astro components
 │   ├── layouts/         # Page layouts
 │   ├── lib/             # Utility libraries (Firebase, etc.)
 │   ├── pages/           # File-based routing
@@ -148,6 +150,11 @@ if (app) {
 
 ## Theme Customization
 
+The site includes a theme selector with three options:
+- **Light** - Light theme
+- **Dark** - Dark theme
+- **System** - Follows OS preference (default)
+
 Themes are configured in `src/styles/global.css`:
 
 ```css
@@ -157,6 +164,20 @@ Themes are configured in `src/styles/global.css`:
 ```
 
 See [DaisyUI Themes](https://daisyui.com/docs/themes/) for customization options.
+
+## Icons
+
+All icons are centralized in `src/components/icons.tsx` for reusability:
+
+```typescript
+import { SunIcon, CheckIcon, MapPinIcon } from './components/icons';
+
+// Use with className for sizing
+<SunIcon className="h-5 w-5" />
+<CheckIcon className="h-4 w-4 text-success" />
+```
+
+Available icons: `MenuIcon`, `SunIcon`, `MoonIcon`, `MonitorIcon`, `CheckIcon`, `MapPinIcon`, `MailIcon`, `PhoneIcon`
 
 ## Learn More
 
