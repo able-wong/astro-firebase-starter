@@ -7,6 +7,10 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "typecheck": "astro check",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "validate": "npm run typecheck && npm run lint",
     "deploy": "npm run build && firebase deploy --only hosting",
     "test-firebase": "node scripts/test-firebase-config.js",
     "fetch-firebase": "node scripts/firebase-data-fetcher.js",
@@ -26,7 +30,13 @@
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.6",
+    "@eslint/js": "^9.39.2",
     "dotenv": "^16.4.5",
-    "firebase-admin": "^13.0.2"
+    "eslint": "^9.39.2",
+    "firebase-admin": "^13.0.2",
+    "globals": "^16.5.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.50.1"
   }
 }
