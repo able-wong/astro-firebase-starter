@@ -109,7 +109,9 @@ export function getFirebaseApp(): FirebaseApp | null {
 
   const missingProps = validateConfig(config);
   if (missingProps.length > 0) {
-    console.error(`Firebase configuration is missing required properties: ${missingProps.join(', ')}`);
+    console.error(
+      `Firebase configuration is missing required properties: ${missingProps.join(', ')}`
+    );
     return null;
   }
 

@@ -10,7 +10,9 @@
     "typecheck": "astro check",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "validate": "npm run typecheck && npm run lint",
+    "format": "prettier --write \"src/**/*.{astro,ts,tsx,js,json,css}\"",
+    "format:check": "prettier --check \"src/**/*.{astro,ts,tsx,js,json,css}\"",
+    "validate": "npm run typecheck && npm run lint && npm run format:check",
     "deploy": "npm run build && firebase deploy --only hosting",
     "test-firebase": "node scripts/test-firebase-config.js",
     "fetch-firebase": "node scripts/firebase-data-fetcher.js",
@@ -36,6 +38,8 @@
     "eslint": "^9.39.2",
     "firebase-admin": "^13.0.2",
     "globals": "^16.5.0",
+    "prettier": "^3.7.4",
+    "prettier-plugin-astro": "^0.14.1",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.50.1"
   }

@@ -20,7 +20,7 @@ const { title, description = 'A modern static site built with Astro' } = Astro.p
     <title>{title}</title>
     <script is:inline>
       // Apply theme immediately to prevent flash
-      (function() {
+      (function () {
         const storedPreference = localStorage.getItem('theme-preference') || 'system';
         let theme;
 

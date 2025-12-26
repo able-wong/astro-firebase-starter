@@ -51,7 +51,8 @@ export default function ThemeSelector() {
     );
   }
 
-  const CurrentIcon = preference === 'light' ? SunIcon : preference === 'dark' ? MoonIcon : MonitorIcon;
+  const CurrentIcon =
+    preference === 'light' ? SunIcon : preference === 'dark' ? MoonIcon : MonitorIcon;
 
   return (
     <div className="dropdown dropdown-end">
