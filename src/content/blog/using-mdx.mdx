@@ -1,0 +1,67 @@
+---
+title: 'Using MDX in Your Posts'
+description: 'Learn how to use MDX to embed React components in your content.'
+pubDate: 2024-01-20
+author: 'Admin'
+tags: ['mdx', 'react', 'tutorial']
+---
+
+MDX lets you use JSX in your markdown content. This means you can embed React components directly in your blog posts!
+
+## Why MDX?
+
+MDX combines the simplicity of Markdown with the power of React components:
+
+- Write content in familiar Markdown syntax
+- Import and use React components
+- Create interactive content experiences
+- Maintain type safety with TypeScript
+
+## Example: Interactive Counter
+
+You can create and import components for your posts. Here's a simple example of what's possible:
+
+```jsx
+// A simple counter component
+function Counter() {
+  const [count, setCount] = useState(0);
+  return (
+    <button onClick={() => setCount(c => c + 1)}>
+      Count: {count}
+    </button>
+  );
+}
+```
+
+## Code Highlighting
+
+Code blocks are styled automatically:
+
+```typescript
+interface BlogPost {
+  title: string;
+  description: string;
+  pubDate: Date;
+  tags: string[];
+}
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+```
+
+## Tips for Using MDX
+
+1. **Keep it simple** - Don't overuse components; let content shine
+2. **Create reusable components** - Build a library of content components
+3. **Consider accessibility** - Ensure interactive elements are keyboard accessible
+4. **Test rendering** - Preview your posts during development
+
+## Learn More
+
+- [MDX Documentation](https://mdxjs.com/)
+- [Astro MDX Integration](https://docs.astro.build/en/guides/integrations-guide/mdx/)

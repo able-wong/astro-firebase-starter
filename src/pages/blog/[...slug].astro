@@ -1,0 +1,90 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/\.(md|mdx)$/, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+  image={post.data.image?.src}
+  type="article"
+  publishedTime={post.data.pubDate}
+  modifiedTime={post.data.updatedDate}
+  author={post.data.author}
+  tags={post.data.tags}
+>
+  <Header currentPath="/blog" />
+
+  <main class="min-h-screen py-12">
+    <article class="container mx-auto px-4 max-w-3xl">
+      <!-- Header -->
+      <header class="mb-8">
+        <div class="flex flex-wrap gap-2 mb-4">
+          {post.data.tags.map((tag) => <span class="badge badge-primary">{tag}</span>)}
+        </div>
+        <h1 class="text-4xl font-bold mb-4">{post.data.title}</h1>
+        <p class="text-xl text-base-content/70 mb-4">{post.data.description}</p>
+        <div class="flex items-center gap-4 text-sm text-base-content/60">
+          <span class="font-medium">{post.data.author}</span>
+          <span>·</span>
+          <time datetime={post.data.pubDate.toISOString()}>
+            {formatDate(post.data.pubDate)}
+          </time>
+          {
+            post.data.updatedDate && (
+              <>
+                <span>·</span>
+                <span>
+                  Updated:{' '}
+                  <time datetime={post.data.updatedDate.toISOString()}>
+                    {formatDate(post.data.updatedDate)}
+                  </time>
+                </span>
+              </>
+            )
+          }
+        </div>
+      </header>
+
+      <!-- Featured Image -->
+      {
+        post.data.image && (
+          <img src={post.data.image.src} alt={post.data.image.alt} class="w-full rounded-lg mb-8" />
+        )
+      }
+
+      <!-- Content -->
+      <div class="prose prose-lg max-w-none">
+        <Content />
+      </div>
+
+      <!-- Back to blog -->
+      <div class="mt-12 pt-8 border-t border-base-300">
+        <a href="/blog" class="btn btn-outline"> &larr; Back to blog </a>
+      </div>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>

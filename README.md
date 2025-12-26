@@ -1,10 +1,11 @@
-# Astro Static Site Starter
+# Astro Content Site Starter
 
-A modern static site starter built with Astro, React, TailwindCSS, and DaisyUI. Optimized for Firebase Hosting deployment.
+A modern content site starter built with Astro, React, TailwindCSS, and DaisyUI. Includes blog with MDX support, SEO optimization, RSS feed, and sitemap. Optimized for Firebase Hosting deployment.
 
 ## Tech Stack
 
 - **Framework**: [Astro](https://astro.build/) - Static Site Generator with great SEO
+- **Content**: [Astro Content Collections](https://docs.astro.build/en/guides/content-collections/) + [MDX](https://mdxjs.com/)
 - **UI Framework**: [React](https://react.dev/) - For interactive components
 - **Styling**: [TailwindCSS v4](https://tailwindcss.com/) + [DaisyUI v5](https://daisyui.com/)
 - **Additional Components**: [Flowbite React](https://flowbite-react.com/)
@@ -19,10 +20,16 @@ A modern static site starter built with Astro, React, TailwindCSS, and DaisyUI. 
 ├── src/
 │   ├── components/      # Astro and React components
 │   │   ├── icons.tsx    # Centralized icon components
+│   │   ├── SEO.astro    # SEO meta tags component
 │   │   └── *.astro      # Astro components
+│   ├── content/         # Content collections
+│   │   ├── config.ts    # Collection schemas
+│   │   └── blog/        # Blog posts (.md, .mdx)
 │   ├── layouts/         # Page layouts
 │   ├── lib/             # Utility libraries (Firebase, etc.)
 │   ├── pages/           # File-based routing
+│   │   ├── blog/        # Blog listing and post pages
+│   │   └── rss.xml.ts   # RSS feed endpoint
 │   └── styles/          # Global CSS
 ├── scripts/             # Utility scripts for Firebase
 ├── firebase.json        # Firebase Hosting configuration
@@ -144,6 +151,84 @@ import Footer from '../components/Footer.astro';
   </main>
   <Footer />
 </Layout>
+```
+
+## Writing Blog Posts
+
+Create `.md` or `.mdx` files in `src/content/blog/`:
+
+```markdown
+---
+title: 'Your Post Title'
+description: 'A brief description of your post'
+pubDate: 2024-01-15
+author: 'Your Name'
+tags: ['tag1', 'tag2']
+draft: false
+image:
+  src: '/images/post-image.jpg'
+  alt: 'Image description'
+---
+
+Your content here...
+```
+
+### Frontmatter Fields
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `title` | Yes | Post title |
+| `description` | Yes | Brief description (used in listings and SEO) |
+| `pubDate` | Yes | Publication date |
+| `author` | No | Author name (default: "Admin") |
+| `tags` | No | Array of tags |
+| `draft` | No | Set to `true` to hide from listings |
+| `image` | No | Featured image with `src` and `alt` |
+| `updatedDate` | No | Last update date |
+
+### Using MDX
+
+MDX files (`.mdx`) allow embedding React components:
+
+```mdx
+---
+title: 'Interactive Post'
+description: 'A post with React components'
+pubDate: 2024-01-20
+---
+
+import MyComponent from '../../components/MyComponent';
+
+Regular markdown content...
+
+<MyComponent />
+
+More content...
+```
+
+## SEO
+
+The `SEO.astro` component handles meta tags automatically. Configure in `src/components/SEO.astro`:
+
+- Update `siteName` with your site name
+- Update `twitterHandle` with your Twitter handle
+- Add a default `og-image.png` to `public/`
+
+## RSS Feed
+
+RSS feed is available at `/rss.xml`. Configure in `src/pages/rss.xml.ts`:
+
+- Update the `title` and `description`
+
+## Sitemap
+
+Sitemap is generated automatically at `/sitemap-index.xml`. Update the `site` URL in `astro.config.mjs`:
+
+```javascript
+export default defineConfig({
+  site: 'https://your-domain.com',
+  // ...
+});
 ```
 
 ## Using Firebase (Optional)
