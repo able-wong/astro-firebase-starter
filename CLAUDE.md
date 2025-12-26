@@ -135,6 +135,146 @@ Environment variable: `PUBLIC_FIREBASE_CONFIG` (prefix with `PUBLIC_` for client
 4. Set environment variables in `.env`
 5. Run `npm run deploy`
 
+## New Site Setup Guide
+
+When user clones this starter for a new website, follow this process:
+
+### 1. Content Gathering (Before Implementation)
+
+Ask user for:
+- **Company info**: Name, tagline, domain, email, social links
+- **Pages needed**: Home, About, Blog, Contact, Products, etc.
+- **Team bios**: Names, titles, descriptions, photos, LinkedIn URLs
+- **Products/Services**: Names, descriptions, links to external sites if any
+- **Target audience**: Who they serve (helps with copy tone)
+
+Guide user on copy if they're not a content writer:
+- Ask: "Who is your ideal customer?"
+- Ask: "What's their biggest pain point?"
+- Ask: "What transformation do you offer?"
+- Draft copy from their answers
+
+### 2. Image Organization
+
+Create folder structure early:
+```
+public/images/
+├── logos/       # Company + product logos
+├── heroes/      # Hero background images (1920x1080, dark-friendly)
+├── team/        # Headshots (400x400 square)
+└── blog/        # Blog post images (1200x630 OG ratio)
+```
+
+Offer to create the folder structure, then help user source images:
+
+1. **AI Image Generators** (free: Nano Banana, DALL-E free tier)
+   - Generate prompts tailored to user's brand, industry, and page purpose
+   - Include "dark", "moody", or "muted tones" for text overlay compatibility
+   - Specify "16:9 aspect ratio" or "wide format" for hero dimensions
+
+2. **Stock Photo Sites** (free: Pixabay, Unsplash, Pexels)
+   - Suggest search keywords specific to user's industry and content
+   - Recommend filtering by horizontal orientation
+   - Look for images with dark areas or space for text overlay
+
+Remind user: hero images need dark/desaturated tones so white text remains readable
+
+### 3. Color Theme Decision
+
+Ask user for color preference early. Options:
+- Professional/corporate (blues, grays)
+- Modern/tech (dark mode, neons)
+- Warm/approachable (earth tones)
+- Custom brand colors (get hex codes)
+
+### 4. Theme Mode Decision
+
+Ask: Light only, Dark only, or Both (with toggle)?
+- **Light only**: Simpler, remove ThemeSelector from Header, set `data-theme="light"` in Layout
+- **Dark only**: Same approach with dark
+- **Both**: Keep ThemeSelector, test logos/images in both modes
+
+### 5. Files to Update
+
+When starting new site, update these:
+- `package.json`: name
+- `astro.config.mjs`: site URL
+- `src/components/SEO.astro`: siteName, social links
+- `src/pages/rss.xml.ts`: title, description
+- `src/components/Header.astro`: logo, company name, nav links
+- `src/components/Footer.astro`: company info, links, social
+- `src/layouts/Layout.astro`: default description, data-theme
+- `src/styles/global.css`: custom theme colors
+
+## DaisyUI v5 Custom Themes
+
+### Creating Custom Theme
+
+Custom themes use a **separate plugin** `@plugin "daisyui/theme"` (not nested inside `@plugin "daisyui"`):
+
+```css
+@import 'tailwindcss';
+@plugin "daisyui";
+
+@plugin "daisyui/theme" {
+  name: "mytheme";
+  default: true;
+  color-scheme: light;
+  --color-base-100: #ffffff;
+  --color-base-200: #f8fafc;
+  --color-base-300: #e2e8f0;
+  --color-base-content: #334155;
+  --color-primary: #4a8fa8;
+  --color-primary-content: #ffffff;
+  --color-secondary: #6b7b8a;
+  --color-secondary-content: #ffffff;
+  --color-accent: #5ba3a8;
+  --color-accent-content: #ffffff;
+  --color-neutral: #1e293b;
+  --color-neutral-content: #f1f5f9;
+  --color-info: #3b82f6;
+  --color-info-content: #ffffff;
+  --color-success: #22c55e;
+  --color-success-content: #ffffff;
+  --color-warning: #f59e0b;
+  --color-warning-content: #ffffff;
+  --color-error: #ef4444;
+  --color-error-content: #ffffff;
+}
+```
+
+Key points:
+- Use `@plugin "daisyui/theme"` for custom themes (separate from `@plugin "daisyui"`)
+- Use `--color-*` prefix for all color variables
+- Set `default: true` to make it the default theme (no `data-theme` needed on `<html>`)
+- Use lowercase hex values (e.g., `#4a8fa8` not `#4A8FA8`)
+
+### Required Theme Colors
+
+Minimum colors to define:
+- `--color-primary`, `--color-primary-content`
+- `--color-secondary`, `--color-secondary-content`
+- `--color-accent`, `--color-accent-content`
+- `--color-neutral`, `--color-neutral-content`
+- `--color-base-100`, `--color-base-200`, `--color-base-300`, `--color-base-content`
+- `--color-info`, `--color-success`, `--color-warning`, `--color-error` (+ content variants)
+
+### Light-Only Site
+
+If no dark mode needed:
+1. Remove ThemeSelector from Header
+2. Remove theme initialization script from Layout
+3. Set `default: true` in your theme (no `data-theme` attribute needed)
+4. Define only one theme with `@plugin "daisyui/theme"`
+
+### Troubleshooting Theme Not Applying
+
+If custom colors don't appear:
+- Use `@plugin "daisyui/theme"` not nested inside `@plugin "daisyui"`
+- Use `--color-*` prefix for all color variables
+- Verify lowercase hex values
+- Restart dev server after changing theme config
+
 ## Common Patterns
 
 ### Form Handling (Static Site)
