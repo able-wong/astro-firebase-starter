@@ -1,6 +1,58 @@
-# Astro Content Site Starter
+# Astro Firebase Starter
 
 A modern content site starter built with Astro, React, TailwindCSS, and DaisyUI. Includes blog with MDX support, SEO optimization, RSS feed, and sitemap. Optimized for Firebase Hosting deployment.
+
+## Why This Stack?
+
+### Compared to Traditional Static Site Generators
+
+Many popular static site generators (Hugo, Jekyll, Eleventy) use custom templating languages that can be difficult to customize. This stack uses **familiar web technologies** that are easy to learn, modify, and extend:
+
+| Advantage | Description |
+|-----------|-------------|
+| **AI-Friendly** | React, TypeScript, and Tailwind are well-understood by AI coding assistants. Get reliable help when customizing your site. |
+| **Transparent Architecture** | No magic or opaque themes. Every component is readable JSX/Astro that you can understand and modify. |
+| **Type Safety** | Content Collections with TypeScript catch errors at build time, not in production. |
+| **Modern Developer Experience** | ESLint, Prettier, Vitest, and CI pipeline included out of the box. |
+| **Component Reusability** | DaisyUI + React components work everywhere. No theme-specific partials or shortcodes. |
+| **Rich Content** | MDX lets you embed interactive React components directly in your Markdown posts. |
+
+### Firebase Hosting Benefits
+
+This starter is optimized for [Firebase Hosting](https://firebase.google.com/docs/hosting), which offers:
+
+- **Global CDN** - Content served from edge locations worldwide
+- **Free SSL** - Automatic HTTPS certificates
+- **Easy Deployment** - Single command (`npm run deploy`)
+- **Preview Channels** - Test changes before going live
+- **Seamless Integration** - Works with Firebase Auth, Firestore, and other Firebase services
+
+### Deploy Anywhere
+
+The build output (`dist/`) is **standard static HTML/CSS/JS** that can be deployed to any static hosting provider:
+
+- Netlify, Vercel, Cloudflare Pages
+- AWS S3 + CloudFront, GitHub Pages
+- Any web server (Nginx, Apache, etc.)
+
+### Adding Interactivity with Firebase
+
+This stack supports **client-side Firebase** for limited interactivity without a server:
+
+- **Authentication** - User sign-in/sign-up with Firebase Auth
+- **Database** - Read/write data with Firestore
+- **Storage** - File uploads with Firebase Storage
+
+This is ideal for contact forms, user comments, gated content, or simple dashboards.
+
+### Need Server-Side Features?
+
+If you need server-side rendering, API routes, or server actions, check out these Remix-based starters:
+
+| Starter | Hosting | Pros | Cons |
+|---------|---------|------|------|
+| [remix-cloudflare-starter](https://github.com/able-wong/remix-cloudflare-starter) | Cloudflare Pages | Great CDN, always available, no cold starts | Not Node.js runtime - some packages won't work |
+| [remix-starter](https://github.com/able-wong/remix-starter) | Firebase App Hosting | Full Node.js runtime, all packages work | Cloud Run has cold starts when idle |
 
 ## Tech Stack
 
@@ -10,7 +62,7 @@ A modern content site starter built with Astro, React, TailwindCSS, and DaisyUI.
 - **Styling**: [TailwindCSS v4](https://tailwindcss.com/) + [DaisyUI v5](https://daisyui.com/)
 - **Additional Components**: [Flowbite React](https://flowbite-react.com/)
 - **Backend (optional)**: [Firebase](https://firebase.google.com/) - Auth, Firestore, Storage
-- **Hosting**: [Firebase Hosting](https://firebase.google.com/docs/hosting)
+- **Hosting**: [Firebase Hosting](https://firebase.google.com/docs/hosting) (or any static host)
 
 ## Project Structure
 
